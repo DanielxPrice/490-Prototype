@@ -1,0 +1,422 @@
+.textButton {
+  background: transparent;
+  color: #2f3542;
+  padding: 6px;
+}
+
+.textButton:hover {
+  text-decoration: underline;
+}
+
+.dashboardMiniGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.smallPanel {
+  background: white;
+  border: 2px solid #d8dee8;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.smallPanel h3 {
+  margin-bottom: 10px;
+}
+
+.smallPanel p {
+  color: #5b6470;
+}
+
+.historyList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.historyCard {
+  background: white;
+  border: 2px solid #d8dee8;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.historyCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.historyScore {
+  font-weight: 700;
+  color: #2f3542;
+}
+
+.historyMeta {
+  margin-bottom: 8px;
+  color: #5b6470;
+}
+
+.tablePanel {
+  background: white;
+  border: 2px solid #d8dee8;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.leaderboardHeader,
+.leaderboardRow {
+  display: grid;
+  grid-template-columns: 100px 1fr 120px;
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+.leaderboardHeader {
+  background: #edf2f7;
+  font-weight: 700;
+}
+
+.leaderboardRow {
+  border-top: 1px solid #e6ebf0;
+}
+
+.analyticsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.analyticsCard {
+  background: white;
+  border: 2px solid #d8dee8;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.analyticsCard h2 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.analyticsValue {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.analyticsDescription {
+  color: #5b6470;
+  line-height: 1.5;
+}
+
+.chartPlaceholder {
+  height: 220px;
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  padding-top: 20px;
+}
+
+.chartBar {
+  flex: 1;
+  background: #cfd8e3;
+  border-radius: 12px 12px 0 0;
+}
+
+.chartBar1 {
+  height: 35%;
+}
+
+.chartBar2 {
+  height: 55%;
+}
+
+.chartBar3 {
+  height: 45%;
+}
+
+.chartBar4 {
+  height: 75%;
+}
+
+.chartBar5 {
+  height: 60%;
+}
+
+@media (max-width: 900px) {
+  .dashboardMiniGrid,
+  .historyList,
+  .analyticsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .leaderboardHeader,
+  .leaderboardRow {
+    grid-template-columns: 80px 1fr 100px;
+  }
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.modeCard {
+  background: white;
+  border: 2px solid #d8dee8;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.modeCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  border-color: #b8c4d3;
+}
+
+.modeCardTop {
+  margin-bottom: 16px;
+}
+
+.modeTag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: #4f5d6b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.modeCardTitle {
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+  color: #1f2937;
+}
+
+.modeCardDescription {
+  color: #5b6470;
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.modeCardBottom {
+  margin-top: auto;
+}
+
+.modeButton {
+  width: 100%;
+}
+
+.setupPanel,
+.sessionInfoPanel {
+  background: white;
+  border: 2px solid #d8dee8;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.setupDescription {
+  color: #5b6470;
+  margin-bottom: 20px;
+}
+
+.setupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.setupLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.compactAnswerBox {
+  min-height: 120px;
+}
+
+.formError {
+  color: #b42318;
+  font-weight: 600;
+}
+
+.actionRow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sessionInfoPanel p {
+  margin-bottom: 10px;
+  color: #4b5563;
+}
+
+.quizOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quizOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 2px solid #d9e0e7;
+  border-radius: 12px;
+  background: #f9fbfc;
+}
+
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: linear-gradient(180deg, #edf2f7 0%, #e4eaf1 100%);
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 460px;
+  background: #ffffff;
+  border: 2px solid #d8dee8;
+  border-radius: 22px;
+  padding: 36px 32px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+
+.loginHeader {
+  margin-bottom: 24px;
+}
+
+.loginTitle {
+  font-size: 2.4rem;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.loginSubtitle {
+  color: #5f6b7a;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.textInput {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #d9e0e7;
+  border-radius: 12px;
+  background: #f9fbfc;
+  color: #1f2937;
+}
+
+.textInput:focus {
+  border-color: #aebccd;
+  background: #ffffff;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.primaryButton {
+  background: #2f3542;
+  color: white;
+}
+
+.primaryButton:hover {
+  background: #434c5c;
+}
+
+.textButton {
+  background: transparent;
+  color: #2f3542;
+  padding: 8px;
+  font-weight: 600;
+}
+
+.textButton:hover {
+  text-decoration: underline;
+}
+
+.settingsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settingsRowCard {
+  background: white;
+  border: 2px solid #d8dee8;
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.settingsRowLeft h3 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: #1f2937;
+}
+
+.settingsRowLeft p {
+  color: #5b6470;
+  line-height: 1.5;
+}
+
+.settingsValue {
+  background: #eef2f7;
+  color: #1f2937;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  min-width: 150px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .settingsRowCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .settingsValue {
+    width: 100%;
+    text-align: left;
+  }
+}

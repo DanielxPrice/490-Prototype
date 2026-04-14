@@ -1,0 +1,91 @@
+.appLayout {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: 110px;
+  background: #2f3542;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 14px;
+  gap: 24px;
+}
+
+.sidebarTop {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.profileCircle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #57606f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.sidebarNav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebarButton,
+.sidebarLogoutButton {
+  width: 100%;
+  padding: 12px 10px;
+  border-radius: 12px;
+  background: #414b57;
+  color: white;
+  text-align: center;
+}
+
+.sidebarButton:hover,
+.sidebarLogoutButton:hover {
+  background: #53606f;
+}
+
+.sidebarButton.active {
+  background: #6c7a89;
+}
+
+.disabledButton {
+  opacity: 0.65;
+}
+
+.sidebarBottom {
+  margin-top: auto;
+  width: 100%;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 32px;
+}
+
+.pageHeader {
+  margin-bottom: 24px;
+}
+
+.pageHeader h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.pageHeader p {
+  color: #5b6470;
+}
+
+.pageBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
