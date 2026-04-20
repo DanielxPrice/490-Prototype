@@ -6,6 +6,7 @@ const mockSessions = [
     score: "84%",
     questionsAnswered: 10,
     eloChange: "+18",
+    summary: "Strong performance on data structures. Consider reviewing graph traversal topics.",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const mockSessions = [
     score: "76%",
     questionsAnswered: 4,
     eloChange: "+9",
+    summary: "Solved 3 of 4 problems. Struggled with recursive solutions under time pressure.",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ const mockSessions = [
     score: "89%",
     questionsAnswered: 6,
     eloChange: "+22",
+    summary: "Excellent verbal clarity. Communication scores were high across all responses.",
   },
 ];
 

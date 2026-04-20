@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import PageLayout from "../components/layout/PageLayout";
 import mockSessions from "../data/mockSessions";
 
 function HistoryPage({ currentPage, onNavigate }) {
+  const [expandedId, setExpandedId] = useState(null);
+
+  function toggleExpand(id) {
+    setExpandedId(expandedId === id ? null : id);
+  }
+
   return (
     <PageLayout
-      title="History"
-      subtitle="Review previous interview sessions."
+      title="Chat History"
+      subtitle="Review and revisit your previous interview sessions."
       currentPage={currentPage}
       onNavigate={onNavigate}
     >
@@ -22,9 +28,41 @@ function HistoryPage({ currentPage, onNavigate }) {
             <p className="historyMeta">Questions Answered: {session.questionsAnswered}</p>
             <p className="historyMeta">ELO Change: {session.eloChange}</p>
 
+            {expandedId === session.id && (
+              <div className="sessionDetail">
+                <hr />
+                <h3>Session Summary</h3>
+                <p><strong>Mode:</strong> {session.mode}</p>
+                <p><strong>Date:</strong> {session.date}</p>
+                <p><strong>Score:</strong> {session.score}</p>
+                <p><strong>Questions Answered:</strong> {session.questionsAnswered}</p>
+                <p><strong>ELO Change:</strong> {session.eloChange}</p>
+                {session.summary && (
+                  <p><strong>Notes:</strong> {session.summary}</p>
+                )}
+                <button
+                  className="secondaryButton"
+                  style={{ marginTop: "10px" }}
+                  onClick={() => onNavigate("interview")}
+                >
+                  Resume Session
+                </button>
+              </div>
+            )}
+
             <div className="actionRow">
-              <button className="secondaryButton">View</button>
-              <button className="secondaryButton">Resume</button>
+              <button
+                className="secondaryButton"
+                onClick={() => toggleExpand(session.id)}
+              >
+                {expandedId === session.id ? "Close" : "View"}
+              </button>
+              <button
+                className="secondaryButton"
+                onClick={() => onNavigate("interview")}
+              >
+                Resume
+              </button>
             </div>
           </div>
         ))}
