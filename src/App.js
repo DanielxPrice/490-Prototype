@@ -5,7 +5,9 @@ import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import InterviewSetupPage from "./pages/InterviewSetupPage";
 import InterviewSessionPage from "./pages/InterviewSessionPage";
+import SessionResultsPage from "./pages/SessionResultsPage";
 import SettingsPage from "./pages/SettingsPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 import HistoryPage from "./pages/HistoryPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
@@ -17,6 +19,15 @@ function App() {
     jobRole: "",
     experienceLevel: "",
     practiceGoals: "",
+  });
+  const [sessionResult, setSessionResult] = useState({
+    mode: "Quiz Style",
+    date: "May 4, 2026",
+    score: "0%",
+    questionsAnswered: 0,
+    eloChange: "0",
+    isCorrect: null,
+    answerSubmitted: false,
   });
 
   function handleNavigate(pageName) {
@@ -31,6 +42,11 @@ function App() {
   function handleStartInterview(formData) {
     setSetupData(formData);
     setCurrentPage("interview");
+  }
+
+  function handleEndInterview(resultData) {
+    setSessionResult(resultData);
+    setCurrentPage("sessionResults");
   }
 
   if (currentPage === "login") {
@@ -79,6 +95,17 @@ function App() {
         onNavigate={handleNavigate}
         selectedMode={selectedMode}
         setupData={setupData}
+        onEndInterview={handleEndInterview}
+      />
+    );
+  }
+
+  if (currentPage === "sessionResults") {
+    return (
+      <SessionResultsPage
+        currentPage={currentPage}
+        onNavigate={handleNavigate}
+        sessionResult={sessionResult}
       />
     );
   }
@@ -88,6 +115,14 @@ function App() {
       <SettingsPage
         currentPage={currentPage}
         onNavigate={handleNavigate}
+      />
+    );
+  }
+
+  if (currentPage === "changePassword") {
+    return (
+      <ChangePasswordPage
+        onBackToSettings={() => handleNavigate("settings")}
       />
     );
   }

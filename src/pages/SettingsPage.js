@@ -135,7 +135,11 @@ function SettingsPage({ currentPage, onNavigate }) {
           Password changes require current password verification. This feature
           will be fully implemented in CPSC 491.
         </p>
-        <button className="secondaryButton" style={{ marginTop: "10px" }}>
+        <button
+          className="primaryButton"
+          style={{ marginTop: "10px" }}
+          onClick={() => onNavigate("changePassword")}
+        >
           Change Password
         </button>
       </div>
