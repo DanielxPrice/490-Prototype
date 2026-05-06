@@ -1,5 +1,6 @@
 import React from "react";
 import PageLayout from "../components/layout/PageLayout";
+import FeedbackBox from "../components/interview/FeedbackBox";
 
 function SessionResultsPage({ currentPage, onNavigate, sessionResult }) {
   const statusText =
@@ -27,6 +28,13 @@ function SessionResultsPage({ currentPage, onNavigate, sessionResult }) {
           Questions Answered: {sessionResult.questionsAnswered ?? 0}
         </p>
         <p className="resultMeta">ELO Change: {sessionResult.eloChange || "0"}</p>
+
+        {sessionResult.feedbackMessage && (
+          <FeedbackBox
+            feedbackType={sessionResult.feedbackType}
+            feedbackMessage={sessionResult.feedbackMessage}
+          />
+        )}
 
         <div className="actionRow resultActionRow">
           <button

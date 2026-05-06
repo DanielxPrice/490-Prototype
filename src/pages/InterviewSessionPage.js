@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PageLayout from "../components/layout/PageLayout";
+import FeedbackBox from "../components/interview/FeedbackBox";
 
 function InterviewSessionPage({
   currentPage,
@@ -58,8 +59,28 @@ function InterviewSessionPage({
       return;
     }
 
-    setFeedbackType("submitted");
-    setFeedbackMessage("Answer submitted successfully.");
+    // Generate AI feedback for written answers
+    const aiFeedback = generateAIFeedback(selectedMode, writtenAnswer);
+    setFeedbackType("ai-feedback");
+    setFeedbackMessage(aiFeedback);
+  }
+
+  function generateAIFeedback(mode, answer) {
+    // Mock AI feedback - in a real implementation, this would call an AI API
+    if (mode === "Code Style") {
+      if (answer.toLowerCase().includes("palindrome") && answer.toLowerCase().includes("function")) {
+        return "Good start! Your function concept is correct. Consider edge cases like empty strings, case sensitivity, and non-alphanumeric characters. Here's a suggested improvement: function isPalindrome(str) { const cleanStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase(); return cleanStr === cleanStr.split('').reverse().join(''); }";
+      } else {
+        return "Your answer shows understanding of the problem. For a palindrome check, you need to compare the string with its reverse. Try implementing a function that handles case insensitivity and removes punctuation.";
+      }
+    } else if (mode === "Interview Mode") {
+      if ((answer.toLowerCase().includes("stack") && answer.toLowerCase().includes("queue")) && (answer.toLowerCase().includes("lifo") || answer.toLowerCase().includes("fifo"))) {
+        return "Excellent explanation! You correctly identified the key differences: Stack is LIFO (Last In, First Out) while Queue is FIFO (First In, First Out). Your use cases are practical. To improve: mention time complexities for operations and when to choose one over the other.";
+      } else {
+        return "You touched on some good points. Remember: Stack follows LIFO (Last In, First Out) - like a stack of plates. Queue follows FIFO (First In, First Out) - like a line at a store. Try giving specific real-world examples for each.";
+      }
+    }
+    return "Thank you for your answer. Our AI is analyzing your response and will provide detailed feedback shortly.";
   }
 
   function handleNextQuestion() {
@@ -81,6 +102,8 @@ function InterviewSessionPage({
         eloChange,
         isCorrect,
         answerSubmitted: answerWasSubmitted,
+        feedbackMessage,
+        feedbackType,
       });
       return;
     }
@@ -95,6 +118,8 @@ function InterviewSessionPage({
       eloChange: "0",
       isCorrect: null,
       answerSubmitted: hasWrittenAnswer,
+      feedbackMessage,
+      feedbackType,
     });
   }
 
@@ -175,11 +200,7 @@ function InterviewSessionPage({
           />
         )}
 
-        {feedbackMessage && (
-          <div className={`quizFeedback ${feedbackType}`}>
-            {feedbackMessage}
-          </div>
-        )}
+        <FeedbackBox feedbackType={feedbackType} feedbackMessage={feedbackMessage} />
 
         <div className="actionRow">
           <button className="secondaryButton" onClick={handleSubmit}>

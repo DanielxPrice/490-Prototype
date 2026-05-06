@@ -116,6 +116,178 @@
   line-height: 1.5;
 }
 
+.analyticsTrend {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.analyticsTrend.positive {
+  color: #059669;
+}
+
+.analyticsTrend.negative {
+  color: #dc2626;
+}
+
+.analyticsTrend.neutral {
+  color: #6b7280;
+}
+
+.performanceBreakdown {
+  padding: 20px 0;
+}
+
+.breakdownSection {
+  margin-bottom: 32px;
+}
+
+.breakdownSection h3 {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+.modeBreakdownGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.modeBreakdownCard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.modeBreakdownCard h4 {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #1f2937;
+}
+
+.modeStats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statLabel {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.statValue {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.performanceBar {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.performanceFill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.trendAnalysis {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.trendAnalysis p {
+  margin-bottom: 8px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.trendAnalysis strong {
+  color: #1f2937;
+}
+
+.progressChart {
+  padding: 20px 0;
+}
+
+.chartContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 220px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.chartColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 60px;
+}
+
+.chartBarContainer {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.chartBarFill {
+  width: 30px;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+}
+
+.chartLabel {
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: center;
+  font-weight: 500;
+}
+
+.chartLegend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legendColor {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.legendItem span {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
 .chartPlaceholder {
   height: 220px;
   display: flex;
@@ -477,6 +649,12 @@
   background: #eef2f7;
   color: #394150;
   border: 2px solid #d8dee8;
+}
+
+.quizFeedback.ai-feedback {
+  background: #f0f9ff;
+  color: #0c4a6e;
+  border: 2px solid #bae6fd;
 }
 
 .resultSummaryCard {

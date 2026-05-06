@@ -1,5 +1,8 @@
 import React from "react";
 import PageLayout from "../components/layout/PageLayout";
+import AnalyticsStatCard from "../components/analytics/AnalyticsStatCard";
+import PerformanceBreakdown from "../components/analytics/PerformanceBreakdown";
+import ProgressChart from "../components/analytics/ProgressChart";
 import mockAnalytics from "../data/mockAnalytics";
 
 function AnalyticsPage({ currentPage, onNavigate }) {
@@ -12,23 +15,23 @@ function AnalyticsPage({ currentPage, onNavigate }) {
     >
       <div className="analyticsGrid">
         {mockAnalytics.map((item) => (
-          <div className="analyticsCard" key={item.id}>
-            <h2>{item.label}</h2>
-            <p className="analyticsValue">{item.value}</p>
-            <p className="analyticsDescription">{item.description}</p>
-          </div>
+          <AnalyticsStatCard
+            key={item.id}
+            label={item.label}
+            value={item.value}
+            description={item.description}
+          />
         ))}
       </div>
 
       <div className="largePanel">
-        <h2 className="panelTitle">Progress Chart Placeholder</h2>
-        <div className="chartPlaceholder">
-          <div className="chartBar chartBar1"></div>
-          <div className="chartBar chartBar2"></div>
-          <div className="chartBar chartBar3"></div>
-          <div className="chartBar chartBar4"></div>
-          <div className="chartBar chartBar5"></div>
-        </div>
+        <h2 className="panelTitle">Progress Over Time</h2>
+        <ProgressChart />
+      </div>
+
+      <div className="largePanel">
+        <h2 className="panelTitle">Performance Breakdown</h2>
+        <PerformanceBreakdown />
       </div>
     </PageLayout>
   );
