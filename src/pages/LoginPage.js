@@ -1,6 +1,6 @@
 import React from "react";
 
-function LoginPage({ onLogin, onGoToRegister }) {
+function LoginPage({ onLogin, onGoToRegister, loginMessage }) {
   return (
     <div className="loginPage">
       <div className="loginCard">
@@ -10,6 +10,23 @@ function LoginPage({ onLogin, onGoToRegister }) {
             Practice interview questions in one place.
           </p>
         </div>
+
+        {/* UC15 — confirmation banner shown after account deletion. */}
+        {loginMessage && (
+          <p
+            style={{
+              backgroundColor: "#e6f4ea",
+              color: "#2e7d32",
+              padding: "10px 14px",
+              borderRadius: "8px",
+              marginBottom: "16px",
+              fontSize: "14px",
+              textAlign: "center",
+            }}
+          >
+            ✓ {loginMessage}
+          </p>
+        )}
 
         <div className="loginForm">
           <input

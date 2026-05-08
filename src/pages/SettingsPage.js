@@ -2,11 +2,25 @@ import React, { useState } from "react";
 import PageLayout from "../components/layout/PageLayout";
 import mockSettings from "../data/mockSettings";
 
-function SettingsPage({ currentPage, onNavigate }) {
+// UC15 — for the prototype we treat this as the "real" password.
+// In production it would be validated against the auth service.
+const MOCK_VALID_PASSWORD = "password123";
+const MAX_PASSWORD_ATTEMPTS = 3;
+
+function SettingsPage({ currentPage, onNavigate, onAccountDeleted }) {
   const [settings, setSettings] = useState(mockSettings);
   const [editingField, setEditingField] = useState(null);
   const [tempValue, setTempValue] = useState("");
   const [saveStatus, setSaveStatus] = useState("");
+
+  // UC15 dialog state — kept local so it resets every time the user
+  // closes the modal. `step` is what makes this a multi-step flow.
+  // 0 = closed, 1 = warning + acknowledgment, 2 = password entry
+  const [deleteStep, setDeleteStep] = useState(0);
+  const [acknowledged, setAcknowledged] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [deleteError, setDeleteError] = useState("");
+  const [passwordAttempts, setPasswordAttempts] = useState(0);
 
   function startEdit(field) {
     setEditingField(field);
@@ -24,6 +38,75 @@ function SettingsPage({ currentPage, onNavigate }) {
     setSettings({ ...settings, [field]: tempValue.trim() });
     setEditingField(null);
     setSaveStatus(`"${field}" updated successfully.`);
+  }
+
+  // ----- UC15 handlers -------------------------------------------------
+
+  function openDeleteDialog() {
+    // Reset every piece of dialog state so a previous abandoned attempt
+    // never leaks into a new one. Easy to forget.
+    setDeleteStep(1);
+    setAcknowledged(false);
+    setConfirmPassword("");
+    setDeleteError("");
+    setPasswordAttempts(0);
+  }
+
+  function closeDeleteDialog() {
+    setDeleteStep(0);
+    setDeleteError("");
+  }
+
+  function handleAcknowledgmentNext() {
+    // Extension #4a — block the user if they didn't tick the checkbox.
+    if (!acknowledged) {
+      setDeleteError("You must agree to the acknowledgment to proceed.");
+      return;
+    }
+    setDeleteError("");
+    setDeleteStep(2);
+  }
+
+  function handleConfirmDelete() {
+    // Extension #6a — empty password.
+    if (!confirmPassword.trim()) {
+      setDeleteError("Please enter your password to confirm account deletion.");
+      return;
+    }
+
+    // Step 7 — validate the password.
+    if (confirmPassword !== MOCK_VALID_PASSWORD) {
+      const nextAttempts = passwordAttempts + 1;
+      setPasswordAttempts(nextAttempts);
+
+      // Extension #6b — three failed attempts cancels the deletion.
+      if (nextAttempts >= MAX_PASSWORD_ATTEMPTS) {
+        closeDeleteDialog();
+        setSaveStatus(
+          "Too many failed attempts. Account deletion has been cancelled."
+        );
+        return;
+      }
+
+      const remaining = MAX_PASSWORD_ATTEMPTS - nextAttempts;
+      setDeleteError(
+        `Incorrect password. ${remaining} attempt${
+          remaining === 1 ? "" : "s"
+        } remaining.`
+      );
+      setConfirmPassword("");
+      return;
+    }
+
+    // Steps 8-10 (happy path). For the prototype we just bubble up
+    // to App.js, which clears state and routes back to login with a
+    // success banner.
+    closeDeleteDialog();
+    if (onAccountDeleted) {
+      onAccountDeleted();
+    } else {
+      onNavigate("login");
+    }
   }
 
   const fields = [
@@ -171,6 +254,247 @@ function SettingsPage({ currentPage, onNavigate }) {
           Change Password
         </button>
       </div>
+
+      {/* UC15 — Account Management */}
+      <div
+        className="largePanel"
+        style={{
+          marginTop: "24px",
+          borderColor: "#f2c9c9",
+          background: "#fff7f7",
+        }}
+      >
+        <h2 className="panelTitle" style={{ color: "#9f1c1c" }}>
+          Account Management
+        </h2>
+        <p>
+          Permanently delete your Interview Buddy account and all associated
+          data. This action cannot be undone.
+        </p>
+        <button
+          className="primaryButton"
+          style={{
+            marginTop: "10px",
+            background: "#9f1c1c",
+          }}
+          onClick={openDeleteDialog}
+        >
+          Delete Account
+        </button>
+      </div>
+
+      {/* UC15 modal — shared overlay, two interior screens */}
+      {deleteStep > 0 && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="deleteAccountTitle"
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(15, 23, 42, 0.55)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 1000,
+          }}
+          onClick={closeDeleteDialog}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "white",
+              borderRadius: "16px",
+              padding: "28px",
+              width: "min(460px, 92vw)",
+              boxShadow: "0 20px 50px rgba(0, 0, 0, 0.25)",
+              border: "2px solid #f2c9c9",
+            }}
+          >
+            {deleteStep === 1 && (
+              <>
+                <h2
+                  id="deleteAccountTitle"
+                  style={{
+                    fontSize: "1.4rem",
+                    marginBottom: "10px",
+                    color: "#9f1c1c",
+                  }}
+                >
+                  Delete your account?
+                </h2>
+                <p
+                  style={{
+                    color: "#5b6470",
+                    lineHeight: 1.5,
+                    marginBottom: "16px",
+                  }}
+                >
+                  This action is <strong>permanent</strong> and cannot be
+                  undone. All of your sessions, scores, and personal data will
+                  be removed from Interview Buddy.
+                </p>
+
+                <label
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    alignItems: "flex-start",
+                    cursor: "pointer",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={acknowledged}
+                    onChange={(e) => {
+                      setAcknowledged(e.target.checked);
+                      if (e.target.checked) setDeleteError("");
+                    }}
+                    style={{ marginTop: "4px" }}
+                  />
+                  <span style={{ color: "#1f2937", lineHeight: 1.5 }}>
+                    I acknowledge this is a permanent action.
+                  </span>
+                </label>
+
+                {deleteError && (
+                  <p
+                    style={{
+                      color: "#9f1c1c",
+                      backgroundColor: "#fff1f1",
+                      border: "1px solid #f2c9c9",
+                      padding: "8px 12px",
+                      borderRadius: "8px",
+                      marginBottom: "14px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {deleteError}
+                  </p>
+                )}
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <button
+                    className="secondaryButton"
+                    style={{ padding: "8px 16px" }}
+                    onClick={closeDeleteDialog}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="primaryButton"
+                    style={{ padding: "8px 16px" }}
+                    onClick={handleAcknowledgmentNext}
+                  >
+                    Next
+                  </button>
+                </div>
+              </>
+            )}
+
+            {deleteStep === 2 && (
+              <>
+                <h2
+                  id="deleteAccountTitle"
+                  style={{
+                    fontSize: "1.4rem",
+                    marginBottom: "10px",
+                    color: "#9f1c1c",
+                  }}
+                >
+                  Confirm with your password
+                </h2>
+                <p
+                  style={{
+                    color: "#5b6470",
+                    lineHeight: 1.5,
+                    marginBottom: "16px",
+                  }}
+                >
+                  For your security, enter your password to confirm permanent
+                  deletion of your account.
+                  <br />
+                  <em style={{ fontSize: "0.85rem" }}>
+                    (Prototype hint: use{" "}
+                    <code>{MOCK_VALID_PASSWORD}</code>)
+                  </em>
+                </p>
+
+                <input
+                  className="textInput"
+                  type="password"
+                  placeholder="Password"
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    if (deleteError) setDeleteError("");
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleConfirmDelete();
+                  }}
+                  autoFocus
+                  style={{
+                    width: "100%",
+                    padding: "10px 12px",
+                    borderRadius: "8px",
+                    border: deleteError
+                      ? "2px solid #9f1c1c"
+                      : "1px solid #ccc",
+                    fontSize: "14px",
+                    marginBottom: "12px",
+                  }}
+                />
+
+                {deleteError && (
+                  <p
+                    style={{
+                      color: "#9f1c1c",
+                      backgroundColor: "#fff1f1",
+                      border: "1px solid #f2c9c9",
+                      padding: "8px 12px",
+                      borderRadius: "8px",
+                      marginBottom: "14px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {deleteError}
+                  </p>
+                )}
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <button
+                    className="secondaryButton"
+                    style={{ padding: "8px 16px" }}
+                    onClick={closeDeleteDialog}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="primaryButton"
+                    style={{ padding: "8px 16px", background: "#9f1c1c" }}
+                    onClick={handleConfirmDelete}
+                  >
+                    Confirm Delete
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </PageLayout>
   );
 }

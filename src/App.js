@@ -29,9 +29,33 @@ function App() {
     isCorrect: null,
     answerSubmitted: false,
   });
+  // UC15 — banner shown on the login page after account deletion.
+  const [loginMessage, setLoginMessage] = useState("");
 
   function handleNavigate(pageName) {
+    // Any navigation away from login clears the one-shot banner so it
+    // doesn't reappear if the user logs in and then logs out.
+    if (pageName !== "login") {
+      setLoginMessage("");
+    }
     setCurrentPage(pageName);
+  }
+
+  function handleAccountDeleted() {
+    // UC15 happy path — clear sensitive state, set the success banner,
+    // and route back to the public login page.
+    setSessionResult({
+      mode: "Quiz Style",
+      date: "May 4, 2026",
+      score: "0%",
+      questionsAnswered: 0,
+      eloChange: "0",
+      isCorrect: null,
+      answerSubmitted: false,
+    });
+    setSelectedMode("");
+    setLoginMessage("Your account has been successfully deleted.");
+    setCurrentPage("login");
   }
 
   function handleSelectMode(modeName) {
@@ -54,6 +78,7 @@ function App() {
       <LoginPage
         onLogin={() => handleNavigate("dashboard")}
         onGoToRegister={() => handleNavigate("register")}
+        loginMessage={loginMessage}
       />
     );
   }
@@ -115,6 +140,7 @@ function App() {
       <SettingsPage
         currentPage={currentPage}
         onNavigate={handleNavigate}
+        onAccountDeleted={handleAccountDeleted}
       />
     );
   }
