@@ -154,7 +154,7 @@ function SessionResultsPage({
 
       {/* Per-question breakdown — the Analytics Engine output */}
       <div className="resultSummaryCard" style={{ marginTop: "20px" }}>
-        <h2 style={{ color: "#16325c", marginBottom: "14px" }}>
+        <h2 style={{ color: "var(--text-primary)", marginBottom: "14px" }}>
           Per-Question Breakdown
         </h2>
 
@@ -224,7 +224,7 @@ function SessionResultsPage({
 
       {/* AI feedback summary — LLM output (Step 5/6) */}
       <div className="resultSummaryCard" style={{ marginTop: "20px" }}>
-        <h2 style={{ color: "#16325c", marginBottom: "10px" }}>
+        <h2 style={{ color: "var(--text-primary)", marginBottom: "10px" }}>
           AI Feedback Summary
         </h2>
         {aiFeedbackAvailable ? (
@@ -232,7 +232,7 @@ function SessionResultsPage({
             <p>{aiFeedback}</p>
           </div>
         ) : (
-          <p style={{ color: "#5b6470", fontStyle: "italic" }}>
+          <p style={{ color: "var(--text-secondary)", fontStyle: "italic" }}>
             AI feedback is unavailable for this session.
           </p>
         )}

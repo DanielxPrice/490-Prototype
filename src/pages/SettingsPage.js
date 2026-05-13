@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PageLayout from "../components/layout/PageLayout";
 import mockSettings from "../data/mockSettings";
+import { useTheme } from "../context/ThemeContext";
 
 // UC15 — for the prototype we treat this as the "real" password.
 // In production it would be validated against the auth service.
@@ -8,10 +9,18 @@ const MOCK_VALID_PASSWORD = "password123";
 const MAX_PASSWORD_ATTEMPTS = 3;
 
 function SettingsPage({ currentPage, onNavigate, onAccountDeleted }) {
-  const [settings, setSettings] = useState(mockSettings);
+  // Theme is sourced from the app-wide ThemeContext so changing it
+  // actually flips the palette. Everything else stays in local state.
+  const { theme, setTheme } = useTheme();
+  const [settings, setSettings] = useState({ ...mockSettings, theme });
   const [editingField, setEditingField] = useState(null);
   const [tempValue, setTempValue] = useState("");
   const [saveStatus, setSaveStatus] = useState("");
+
+  // Keep the displayed value in sync with the live theme.
+  if (settings.theme !== theme) {
+    setSettings((s) => ({ ...s, theme }));
+  }
 
   // UC15 dialog state — kept local so it resets every time the user
   // closes the modal. `step` is what makes this a multi-step flow.
@@ -35,7 +44,13 @@ function SettingsPage({ currentPage, onNavigate, onAccountDeleted }) {
 
   function saveEdit(field) {
     if (!tempValue.trim()) return;
-    setSettings({ ...settings, [field]: tempValue.trim() });
+    const newValue = tempValue.trim();
+    setSettings({ ...settings, [field]: newValue });
+    // Theme is special — push it into the context so the rest of the
+    // app re-renders against the new palette.
+    if (field === "theme") {
+      setTheme(newValue);
+    }
     setEditingField(null);
     setSaveStatus(`"${field}" updated successfully.`);
   }
@@ -262,12 +277,15 @@ function SettingsPage({ currentPage, onNavigate, onAccountDeleted }) {
           marginTop: "24px",
           borderColor: "#f2c9c9",
           background: "#fff7f7",
+          // Explicit dark text colors so the panel reads correctly in both
+          // light and dark themes (the pink background stays light in both).
+          color: "#5b6470",
         }}
       >
         <h2 className="panelTitle" style={{ color: "#9f1c1c" }}>
           Account Management
         </h2>
-        <p>
+        <p style={{ color: "#5b6470" }}>
           Permanently delete your Interview Buddy account and all associated
           data. This action cannot be undone.
         </p>

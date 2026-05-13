@@ -1,6 +1,6 @@
 .textButton {
   background: transparent;
-  color: #2f3542;
+  color: var(--text-primary);
   padding: 6px;
 }
 
@@ -15,8 +15,8 @@
 }
 
 .smallPanel {
-  background: white;
-  border: 2px solid #d8dee8;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-panel);
   border-radius: 18px;
   padding: 20px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
@@ -27,7 +27,7 @@
 }
 
 .smallPanel p {
-  color: #5b6470;
+  color: var(--text-secondary);
 }
 
 .historyList {
@@ -37,8 +37,8 @@
 }
 
 .historyCard {
-  background: white;
-  border: 2px solid #d8dee8;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-panel);
   border-radius: 18px;
   padding: 20px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
@@ -53,17 +53,17 @@
 
 .historyScore {
   font-weight: 700;
-  color: #2f3542;
+  color: var(--text-primary);
 }
 
 .historyMeta {
   margin-bottom: 8px;
-  color: #5b6470;
+  color: var(--text-secondary);
 }
 
 .tablePanel {
-  background: white;
-  border: 2px solid #d8dee8;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-panel);
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
@@ -78,12 +78,13 @@
 }
 
 .leaderboardHeader {
-  background: #edf2f7;
+  background: var(--bg-chip);
+  color: var(--text-primary);
   font-weight: 700;
 }
 
 .leaderboardRow {
-  border-top: 1px solid #e6ebf0;
+  border-top: 1px solid var(--border-panel);
 }
 
 .analyticsGrid {
@@ -93,8 +94,8 @@
 }
 
 .analyticsCard {
-  background: white;
-  border: 2px solid #d8dee8;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-panel);
   border-radius: 18px;
   padding: 22px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
@@ -112,7 +113,7 @@
 }
 
 .analyticsDescription {
-  color: #5b6470;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
@@ -145,7 +146,7 @@
 .breakdownSection h3 {
   font-size: 1.2rem;
   margin-bottom: 16px;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .modeBreakdownGrid {
@@ -155,8 +156,8 @@
 }
 
 .modeBreakdownCard {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-panel);
   border-radius: 12px;
   padding: 16px;
 }
@@ -164,7 +165,7 @@
 .modeBreakdownCard h4 {
   font-size: 1rem;
   margin-bottom: 12px;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .modeStats {
@@ -181,13 +182,13 @@
 }
 
 .statLabel {
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
 .statValue {
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .performanceBar {
@@ -205,20 +206,20 @@
 }
 
 .trendAnalysis {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-panel);
   border-radius: 12px;
   padding: 16px;
 }
 
 .trendAnalysis p {
   margin-bottom: 8px;
-  color: #374151;
+  color: var(--text-primary);
   line-height: 1.5;
 }
 
 .trendAnalysis strong {
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .progressChart {
@@ -259,7 +260,7 @@
 
 .chartLabel {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   text-align: center;
   font-weight: 500;
 }
@@ -285,7 +286,7 @@
 
 .legendItem span {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .chartPlaceholder {
@@ -342,8 +343,8 @@
 }
 
 .modeCard {
-  background: white;
-  border: 2px solid #d8dee8;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-panel);
   border-radius: 20px;
   padding: 24px;
   display: flex;
@@ -377,11 +378,11 @@
 .modeCardTitle {
   font-size: 1.5rem;
   margin-bottom: 14px;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .modeCardDescription {
-  color: #5b6470;
+  color: var(--text-secondary);
   line-height: 1.65;
   flex: 1;
   margin-bottom: 20px;
@@ -397,15 +398,15 @@
 
 .setupPanel,
 .sessionInfoPanel {
-  background: white;
-  border: 2px solid #d8dee8;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-panel);
   border-radius: 18px;
   padding: 24px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
 }
 
 .setupDescription {
-  color: #5b6470;
+  color: var(--text-secondary);
   margin-bottom: 20px;
 }
 
@@ -420,7 +421,7 @@
   flex-direction: column;
   gap: 8px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .compactAnswerBox {
@@ -440,7 +441,7 @@
 
 .sessionInfoPanel p {
   margin-bottom: 10px;
-  color: #4b5563;
+  color: var(--text-primary);
 }
 
 .quizOptions {
@@ -455,9 +456,10 @@
   align-items: center;
   gap: 10px;
   padding: 14px 16px;
-  border: 2px solid #d9e0e7;
+  border: 2px solid var(--border-input);
   border-radius: 12px;
-  background: #f9fbfc;
+  background: var(--bg-muted);
+  color: var(--text-primary);
 }
 
 .loginPage {
@@ -466,14 +468,14 @@
   align-items: center;
   justify-content: center;
   padding: 32px;
-  background: linear-gradient(180deg, #edf2f7 0%, #e4eaf1 100%);
+  background: var(--bg-page);
 }
 
 .loginCard {
   width: 100%;
   max-width: 460px;
-  background: #ffffff;
-  border: 2px solid #d8dee8;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-panel);
   border-radius: 22px;
   padding: 36px 32px;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
@@ -487,11 +489,11 @@
   font-size: 2.4rem;
   line-height: 1.1;
   margin-bottom: 10px;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .loginSubtitle {
-  color: #5f6b7a;
+  color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -505,15 +507,15 @@
 .textInput {
   width: 100%;
   padding: 14px 16px;
-  border: 2px solid #d9e0e7;
+  border: 2px solid var(--border-input);
   border-radius: 12px;
-  background: #f9fbfc;
-  color: #1f2937;
+  background: var(--bg-muted);
+  color: var(--text-primary);
 }
 
 .textInput:focus {
   border-color: #aebccd;
-  background: #ffffff;
+  background: var(--bg-panel);
 }
 
 .primaryButton,
@@ -524,17 +526,17 @@
 }
 
 .primaryButton {
-  background: #2f3542;
+  background: var(--primary-button-bg);
   color: white;
 }
 
 .primaryButton:hover {
-  background: #434c5c;
+  background: var(--primary-button-hover);
 }
 
 .textButton {
   background: transparent;
-  color: #2f3542;
+  color: var(--text-primary);
   padding: 8px;
   font-weight: 600;
 }
@@ -550,8 +552,8 @@
 }
 
 .settingsRowCard {
-  background: white;
-  border: 2px solid #d8dee8;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-panel);
   border-radius: 18px;
   padding: 20px 22px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
@@ -564,17 +566,17 @@
 .settingsRowLeft h3 {
   font-size: 1.1rem;
   margin-bottom: 6px;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .settingsRowLeft p {
-  color: #5b6470;
+  color: var(--text-secondary);
   line-height: 1.5;
 }
 
 .settingsValue {
-  background: #eef2f7;
-  color: #1f2937;
+  background: var(--bg-chip);
+  color: var(--text-primary);
   padding: 10px 14px;
   border-radius: 12px;
   font-weight: 700;
@@ -597,15 +599,15 @@
 .questionPanel,
 .answerPanel,
 .resultSummaryCard {
-  background: white;
-  border: 2px solid #d8dee8;
+  background: var(--bg-panel);
+  border: 2px solid var(--border-panel);
   border-radius: 18px;
   padding: 24px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
 }
 
 .questionText {
-  color: #2f3542;
+  color: var(--text-primary);
   line-height: 1.6;
 }
 
@@ -613,10 +615,10 @@
   width: 100%;
   min-height: 180px;
   padding: 14px 16px;
-  border: 2px solid #d9e0e7;
+  border: 2px solid var(--border-input);
   border-radius: 12px;
-  background: #f9fbfc;
-  color: #1f2937;
+  background: var(--bg-muted);
+  color: var(--text-primary);
   resize: vertical;
 }
 
@@ -671,18 +673,18 @@
 
 .resultSummaryTop h2 {
   font-size: 2rem;
-  color: #16325c;
+  color: var(--text-primary);
 }
 
 .resultSummaryScore {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .resultMeta {
   margin-bottom: 10px;
-  color: #415064;
+  color: var(--text-primary);
   font-size: 1.15rem;
 }
 

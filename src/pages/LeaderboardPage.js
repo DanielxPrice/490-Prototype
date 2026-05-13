@@ -105,7 +105,7 @@ function LeaderboardPage({ currentPage, onNavigate }) {
               </button>
             </div>
             {addStatus && (
-              <p style={{ marginTop: "8px", fontSize: "13px", color: "#555" }}>
+              <p style={{ marginTop: "8px", fontSize: "13px", color: "var(--text-secondary)" }}>
                 {addStatus}
               </p>
             )}
@@ -119,7 +119,7 @@ function LeaderboardPage({ currentPage, onNavigate }) {
               <span>Action</span>
             </div>
             {friends.length === 0 && (
-              <p style={{ padding: "16px", color: "#888" }}>
+              <p style={{ padding: "16px", color: "var(--text-secondary)" }}>
                 No friends added yet. Search for a username above.
               </p>
             )}

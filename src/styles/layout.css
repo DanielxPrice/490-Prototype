@@ -5,7 +5,7 @@
 
 .sidebar {
   width: 110px;
-  background: #2f3542;
+  background: var(--sidebar-bg);
   color: white;
   display: flex;
   flex-direction: column;
@@ -43,18 +43,18 @@
   width: 100%;
   padding: 12px 10px;
   border-radius: 12px;
-  background: #414b57;
+  background: var(--sidebar-button-bg);
   color: white;
   text-align: center;
 }
 
 .sidebarButton:hover,
 .sidebarLogoutButton:hover {
-  background: #53606f;
+  background: var(--sidebar-button-hover);
 }
 
 .sidebarButton.active {
-  background: #6c7a89;
+  background: var(--sidebar-button-active);
 }
 
 .disabledButton {
@@ -81,7 +81,11 @@
 }
 
 .pageHeader p {
-  color: #5b6470;
+  color: var(--text-secondary);
+}
+
+.pageHeader h1 {
+  color: var(--text-primary);
 }
 
 .pageBody {

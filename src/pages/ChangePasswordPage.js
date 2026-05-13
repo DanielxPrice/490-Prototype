@@ -82,7 +82,7 @@ function ChangePasswordPage({ onBackToSettings }) {
             <p
               style={{
                 marginTop: "6px",
-                color: "#5f6b7a",
+                color: "var(--text-secondary)",
                 fontSize: "14px",
                 lineHeight: "1.5",
                 whiteSpace: "pre-line",

@@ -4,6 +4,46 @@
   padding: 0;
 }
 
+/* ---- Theme palette ---- */
+/* Light theme is the default. CSS variables are read by layout.css
+   and pages.css so a single attribute swap on <html> repaints the app. */
+:root,
+[data-theme="light"] {
+  --bg-page: #eef1f5;
+  --bg-panel: #ffffff;
+  --bg-muted: #f9fbfc;
+  --bg-chip: #eef2f7;
+  --text-primary: #1f2937;
+  --text-secondary: #5b6470;
+  --border-panel: #d8dee8;
+  --border-input: #d9e0e7;
+  --sidebar-bg: #2f3542;
+  --sidebar-button-bg: #414b57;
+  --sidebar-button-hover: #53606f;
+  --sidebar-button-active: #6c7a89;
+  --primary-button-bg: #2f3542;
+  --primary-button-hover: #434c5c;
+  --panel-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  --bg-page: #0f172a;
+  --bg-panel: #1e293b;
+  --bg-muted: #1a2436;
+  --bg-chip: #283448;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-panel: #334155;
+  --border-input: #334155;
+  --sidebar-bg: #0b1220;
+  --sidebar-button-bg: #1e293b;
+  --sidebar-button-hover: #334155;
+  --sidebar-button-active: #475569;
+  --primary-button-bg: #3b82f6;
+  --primary-button-hover: #2563eb;
+  --panel-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
 html,
 body,
 #root {
@@ -12,8 +52,8 @@ body,
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #eef1f5;
-  color: #1f2937;
+  background: var(--bg-page);
+  color: var(--text-primary);
 }
 
 button,
