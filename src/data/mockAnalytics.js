@@ -20,7 +20,7 @@ const mockAnalytics = [
   {
     id: 4,
     label: "Strongest Mode",
-    value: "Response",
+    value: "Theoretical",
     description: "Best performing practice type so far.",
   },
 ];

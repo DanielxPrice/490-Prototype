@@ -19,7 +19,7 @@ const mockSessions = [
   },
   {
     id: 3,
-    mode: "Response Style",
+    mode: "Theoretical Style",
     date: "April 8, 2026",
     score: "89%",
     questionsAnswered: 6,

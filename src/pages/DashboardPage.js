@@ -24,9 +24,9 @@ function DashboardPage({ currentPage, onNavigate, onSelectMode }) {
         />
 
         <PracticeModeCard
-          title="Response Style"
+          title="Theoretical Style"
           description="Practice open response interview questions and longer conceptual explanations."
-          onOpen={() => onSelectMode("Response Style")}
+          onOpen={() => onSelectMode("Theoretical Style")}
         />
       </div>
 
